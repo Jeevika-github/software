@@ -1,0 +1,22 @@
+ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+                try{
+        Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/logindb","login","login");
+        Statement st = conn.createStatement();
+            String sql = "insert into reviewstable values(?, ?, ?)";
+            PreparedStatement pstmt;
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,jTextField1.getText());
+            String roomt;
+            roomt = jComboBox1.getSelectedItem().toString();
+            pstmt.setString(2,roomt);
+            String rate;
+            rate = jComboBox2.getSelectedItem().toString();
+            pstmt.setString(3,rate);
+            pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Thanks for your rating!");
+            conn.close();
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null,"OOps try again");
+     
+    }                                        
+    }                                        
